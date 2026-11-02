@@ -21,8 +21,8 @@ footer{margin-top:3rem;color:var(--muted);font-size:.8rem;border-top:1px solid v
 <p><a href="/kb/incidents/4471">#4471</a> merged every report about a wrong date into one ticket, marked it known and queued one fix. Read side by side with the tenant directory, the reports are three different problems. The queued fix covers the first one only.</p>
 <p class="callout">Not one issue, one fix queued. Three problems, one ticket each.</p>
 <h2>Three tickets</h2>
-<table><thead><tr><th>problem</th><th>reports</th><th>ticket</th></tr></thead><tbody><tr><td><code>parser</code></td><td>374</td><td><a href="https://github.com/IsaacIsrael/kb-4471/issues/1">#1</a></td></tr><tr><td><code>hint</code></td><td>33</td><td><a href="https://github.com/IsaacIsrael/kb-4471/issues/2">#2</a></td></tr><tr><td><code>one-day-move</code></td><td>5</td><td><a href="https://github.com/IsaacIsrael/kb-4471/issues/3">#3</a></td></tr></tbody></table>
-<p class="sum"><strong>412</strong> reports in all, from <strong>412</strong> merged into #4471.</p>
+<table><thead><tr><th>problem</th><th>reports</th><th>ticket</th></tr></thead><tbody><tr><td><code>parser</code></td><td>379</td><td><a href="https://github.com/IsaacIsrael/kb-4471/issues/1">#1</a></td></tr><tr><td><code>hint</code></td><td>33</td><td><a href="https://github.com/IsaacIsrael/kb-4471/issues/2">#2</a></td></tr><tr><td><code>one-day-move</code></td><td>5</td><td><a href="https://github.com/IsaacIsrael/kb-4471/issues/3">#3</a></td></tr></tbody></table>
+<p class="sum"><strong>412</strong> reports merged into #4471. The 5 one-day-move reports are also counted under their cause.</p>
 <ul>
 <li><b>parser</b>: the shared parser reads every date month first, so tenants that write the day first get day and month flipped.</li>
 <li><b>hint</b>: tenants on booking-v3 write the day first, but their form prints <code>MM/DD/YYYY</code>. Their people type what the hint says. Fixing the parser does not fix this.</li>
@@ -32,7 +32,7 @@ footer{margin-top:3rem;color:var(--muted);font-size:.8rem;border-top:1px solid v
 <p class="sum"><strong>412</strong> reports merged into #4471 · <strong>2</strong> causes</p>
 <table><thead><tr><th>cause</th><th>reports</th><th>tagged as</th><th>tenants</th><th>seen</th><th></th></tr></thead><tbody><tr class=""><td><code>parser</code></td><td>379</td><td class="tags">parser ×356 · hint ×23</td><td>11</td><td>2026-04-01 → 2026-10-04</td><td>#4471</td></tr><tr class="wrong"><td><code>hint</code></td><td>33</td><td class="tags">hint ×18 · parser ×15</td><td>3</td><td>2026-04-17 → 2026-09-22</td><td>not this ticket — no ticket of its own</td></tr></tbody></table>
 <p class="note">5 reports read as a one-day move; filed under <code>parser</code> by tenant.</p>
-<p>The desk's table counts the one-day-move reports under <code>parser</code>, where the cause rule files them. They are counted here as their own problem, so the two tables differ by that note and by nothing else.</p>
+<p>The desk's table counts the one-day-move reports under <code>parser</code>, where the cause rule files them. The table above counts them there too and gives them a ticket of their own, so the two tables agree.</p>
 <h2>Why the merge hid it</h2>
 <ul><li>Intake tags a report from the reporter's browser. The cause depends on the tenant, so the tag and the cause disagree on many reports. A tag is a guess.</li>
 <li>The dedupe rule (<a href="/kb/decisions/0001-dedupe-by-subject">decision 0001</a>) merges on the subject line. These reports share subjects across different bugs.</li></ul>

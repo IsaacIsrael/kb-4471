@@ -8,10 +8,11 @@
 
   const merged = $derived(uniqueById(reports as Report[]).filter((r) => r.mergedInto === ticket));
   const groups = $derived(groupByCause(merged, tenantOf));
-  // The desk's one-day-move reports are filed under the cause their tenant gives them; they are a third problem.
+  // Counted as the desk counts: by cause, each report once. The one-day-move reports stay under the
+  // cause their tenant gives them and are footnoted, and they also get a ticket of their own.
   const moved = $derived(groups.reduce((n, g) => n + readAs(g, notes.oneDayMove), 0));
   const rows = $derived([
-    ...groups.map((g) => ({ key: g.cause, count: g.reports.length - readAs(g, notes.oneDayMove) })),
+    ...groups.map((g) => ({ key: g.cause, count: g.reports.length })),
     { key: 'one-day-move', count: moved },
   ]);
 </script>
@@ -24,4 +25,4 @@
     {/each}
   </tbody>
 </table>
-<p class="sum"><strong>{rows.reduce((n, r) => n + r.count, 0)}</strong> reports in all, from {merged.length} merged into #{ticket}.</p>
+<p class="sum"><strong>{merged.length}</strong> reports merged into #{ticket}. The {moved} one-day-move reports are also counted under their cause.</p>
