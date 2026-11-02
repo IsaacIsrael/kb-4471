@@ -4,7 +4,7 @@ title: '#4471 · three problems, not one'
 owner: Isaac Israel
 status: open
 reviewed: 2026-11-02
-signature: Isaac Israel (com Claude Code)
+signature: v1.eyJzdWIiOiIzMjk1IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTM2Mjg4MDUsImV4cCI6MTc5MzcxNTIwNX0.1qnDmlew8OU_OO2-7TK_OCRcMDEhDrzpDWsTA7iTyDY
 ---
 
 <script>
