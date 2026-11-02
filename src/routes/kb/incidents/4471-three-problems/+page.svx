@@ -1,0 +1,63 @@
+---
+layout: runbook
+title: '#4471 · three problems, not one'
+owner: Isaac Israel
+status: open
+reviewed: 2026-11-02
+signature: Isaac Israel (com Claude Code)
+---
+
+<script>
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import ProblemCounts from '#lib/kb/ProblemCounts.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+
+  const issues = {
+    parser: 'https://github.com/IsaacIsrael/kb-4471/issues/1',
+    hint: 'https://github.com/IsaacIsrael/kb-4471/issues/2',
+    'one-day-move': 'https://github.com/IsaacIsrael/kb-4471/issues/3',
+  };
+</script>
+
+[#4471](/kb/incidents/4471) merged every report about a wrong date into one ticket, marked it
+known and queued one fix. Read side by side with the tenant directory, the reports are three
+different problems. The queued fix covers the first one only.
+
+<Callout>
+Not one issue, one fix queued. Three problems, one ticket each.
+</Callout>
+
+## Three tickets
+
+<ProblemCounts ticket={4471} {issues} />
+
+- **parser**: the shared parser reads every date month first, so tenants that write the day first
+  get day and month flipped.
+- **hint**: tenants on booking-v3 write the day first, but their form prints `MM/DD/YYYY`. Their
+  people type what the hint says. Fixing the parser does not fix this.
+- **one-day-move**: the date moves by one day, not by a month. The desk already marked these
+  reports in `desk-notes.json`. The cause rule files them under `parser` by tenant, and they look
+  like a timezone problem.
+
+## How the table above reads
+
+<CauseTable ticket={4471} />
+
+The desk's table counts the one-day-move reports under `parser`, where the cause rule files
+them. They are counted here as their own problem, so the two tables differ by that note and by
+nothing else.
+
+## Why the merge hid it
+
+- Intake tags a report from the reporter's browser. The cause depends on the tenant, so the tag
+  and the cause disagree on many reports. A tag is a guess.
+- The dedupe rule ([decision 0001](/kb/decisions/0001-dedupe-by-subject)) merges on the subject
+  line. These reports share subjects across different bugs.
+
+## Lessons
+
+- Merge on cause, not on subject. Count each cause once.
+- A footnote is a ticket nobody opened. Open it.
+
+<RenderStamp {signature} />
