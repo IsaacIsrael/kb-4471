@@ -45,8 +45,8 @@ Not one issue, one fix queued. Three problems, one ticket each.
 <CauseTable ticket={4471} />
 
 The desk's table counts the one-day-move reports under `parser`, where the cause rule files
-them. They are counted here as their own problem, so the two tables differ by that note and by
-nothing else.
+them. The table above counts them there too and gives them a ticket of their own, so the two
+tables agree.
 
 ## Why the merge hid it
 
